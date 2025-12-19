@@ -1,0 +1,16 @@
+[
+  "step",
+  "amount",
+  "oldbalanceOrg",
+  "newbalanceOrig",
+  "oldbalanceDest",
+  "newbalanceDest",
+  "isFlaggedFraud",
+  "amount_log",
+  "same_account",
+  "t_CASH_IN",
+  "t_CASH_OUT",
+  "t_DEBIT",
+  "t_PAYMENT",
+  "t_TRANSFER"
+]
