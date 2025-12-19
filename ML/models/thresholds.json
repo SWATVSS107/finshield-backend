@@ -1,0 +1,5 @@
+{
+  "paysim": { "BLOCK": 0.80, "REVIEW": 0.20 },
+  "ieee":   { "BLOCK": 0.85, "REVIEW": 0.20 },
+  "elliptic": { "BLOCK": 0.60, "REVIEW": 0.25 }
+}

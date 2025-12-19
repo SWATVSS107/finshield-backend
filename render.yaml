@@ -1,0 +1,35 @@
+services:
+  # ML Service (must be deployed first)
+  - type: web
+    name: finshield-ml
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: cd ML && python -m uvicorn unified_api:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PORT
+        value: 10000
+
+  # Main API Service (depends on ML service)
+  - type: web
+    name: finshield-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: finshield-db
+          property: connectionString
+      - key: ML_SERVICE_URL
+        # Update this after ML service is deployed - use the actual URL from Render dashboard
+        # Format: https://finshield-ml.onrender.com (without /predict)
+        value: https://finshield-ml.onrender.com
+      - key: PORT
+        value: 10000
+
+databases:
+  - name: finshield-db
+    databaseName: finshield
+    user: finshield_user
+    plan: free
+
